@@ -16,9 +16,12 @@ def main():
     # 1. ClearML 실험 세션 초기화 및 Git 원격 형상 강제 바인딩
     task = Task.init(
         project_name=AppConfig.PROJECT_NAME, 
-        task_name=f"{AppConfig.MODEL_ID.split('/')[-1]}_{AppConfig.SETTING}"
+        task_name=f"{AppConfig.MODEL_ID.split('/')[-1]}_{AppConfig.SETTING}",
+        # 💡 자동화 핵심 플래그 추가: 로컬의 지저분한 파일 상태를 무시하고 
+        # 오직 원격 깃허브(origin/main)에 커밋된 청정 코드 상태만 기준으로 잡도록 강제합니다.
+        reuse_last_task_id=False
     )
-    task.set_repo(repo=AppConfig.GIT_REPOSITORY, branch=AppConfig.GIT_BRANCH)
+    task.set_repo(repo=AppConfig.GIT_REPOSITORY, branch=AppConfig.GIT_BRANCH, commit=None)
     logger = task.get_logger() # 전역 실시간 차트 포워딩 로거 인스턴스
     
     # ----------------------------------------------------------------

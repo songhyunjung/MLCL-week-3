@@ -1,0 +1,13 @@
+cat << 'EOF' > .gitignore
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.vscode/
+.idea/
+*.png
+*.jpg
+nohup.out
+*.log
+EOF

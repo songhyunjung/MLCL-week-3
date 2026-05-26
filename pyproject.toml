@@ -1,0 +1,49 @@
+[tool.poetry]
+name = "week3-vlm-image-captioning"
+version = "0.1.0"
+description = "Week 3 VLM Image Captioning Experiment with Qwen2-VL & Qwen3-VL"
+authors = ["HyunJung Song <sss3593@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+
+# [1] 필수 공통 및 발표 자료 시각화 라이브러리 (버전 제외)
+# CUDA 12.2 환경과 호환되는 PyTorch 2.x+cu121 버전을 강제하도록 소스를 지정합니다.
+torch = { version = "*", source = "pytorch-gpu" }
+torchvision = { version = "*", source = "pytorch-gpu" }
+torchaudio = { version = "*", source = "pytorch-gpu" }
+numpy = "*"
+pandas = "*"
+scikit-learn = "*"
+
+# 데이터셋 분포 시각화 및 발표 자료 제작용 툴
+matplotlib = "*"
+seaborn = "*"
+plotly = "*"
+
+# MLOps & 실시간 정성평가 데모 웹 구현
+clearml = "*"
+clearml-agent = "*"
+gradio = "*"
+tqdm = "*"
+
+# [2] 3주차 통합형 VLM 구현 및 PEFT(LoRA) 미세조정 필수 패키지 (버전 제외)
+transformers = "*"
+accelerate = "*"
+peft = "*"
+datasets = "*"
+qwen-vl-utils = "*"
+decord = "*"
+av = "*"
+
+# CUDA 12.2 및 12.x 그래픽 드라이버 가속을 위한 공식 파이토치 저장소 설정
+pyarrow = "^24.0.0"
+[[tool.poetry.source]]
+name = "pytorch-gpu"
+url = "https://download.pytorch.org/whl/cu121"
+priority = "explicit"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

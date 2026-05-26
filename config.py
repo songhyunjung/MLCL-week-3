@@ -16,11 +16,11 @@ class AppConfig:
     # 백본 모델 경로, Qwen/Qwen2-VL-7B-Instruct, Qwen/Qwen3-VL-8B-Instruct 중 선택
     MODEL_ID = "Qwen/Qwen2-VL-7B-Instruct"  
 
-    # Zero-shot, Few-shot, Full fine-tuning, PEFT 중 선택
+    # Zero-shot, Few-shot, Full fine-tuning, PEFT
     SETTING = "PEFT"          
 
     # Greedy, Beam (Beam=5) 중 선택     
-    DECODING_METHOD = "Beam"    
+    DECODING_METHOD = "Greedy"    #
 
     # Flickr30k, CustomCOCO 등 확장 가능            
     DATASET_NAME = "nlphuji/flickr30k"    
@@ -29,7 +29,7 @@ class AppConfig:
     BATCH_SIZE = 2
     EPOCHS = 3
     # 2e-5, 5e-5 중에 선택
-    LEARNING_RATE = 2e-5
+    LEARNING_RATE = 2e-5 #
     MAX_NEW_TOKENS = 40
     
     # 5. 평가지표 동적 활성화 풀

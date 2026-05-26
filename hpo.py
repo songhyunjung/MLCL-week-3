@@ -13,7 +13,7 @@ task = Task.init(
 
 # 2. 하이퍼파라미터 오토메이션 엔진 설정
 optimizer = HyperParameterOptimizer(
-    "ddc6dd590490437da7c721afd8e80d80",
+    base_task_id="f79d0344f2644dc68dcde8629893787f",
     
     hyper_parameters=[
         DiscreteParameterRange('Args/LEARNING_RATE', values=[2e-5, 5e-5]),

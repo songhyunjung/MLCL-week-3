@@ -20,7 +20,7 @@ class AppConfig:
     SETTING = "PEFT"          
 
     # Greedy, Beam (Beam=5) 중 선택     
-    DECODING_METHOD = "Greedy"    #
+    DECODING_METHOD = "Beam"    #
 
     # Flickr30k, CustomCOCO 등 확장 가능            
     DATASET_NAME = "nlphuji/flickr30k"    

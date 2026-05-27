@@ -7,7 +7,7 @@ class AppConfig:
     DEBUG_MODE = False  # True일 시 전체 데이터 중 10개만 추출하여 전체 파이프라인 결함 선제 검증
     
     # 2. MLOps 및 코드 형상 관리를 위한 중앙 원격 Git 제어 설정
-    PROJECT_NAME = "Week3_VLM_Image_Captioning"
+    PROJECT_NAME = "Week3_Qwen2"
     GIT_REPOSITORY = "https://github.com/songhyunjung/MLCL-week-3.git"
     GIT_BRANCH = "main"
     

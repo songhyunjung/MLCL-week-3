@@ -15,7 +15,7 @@ task = Task.init(
 try:
     base_tasks = Task.get_tasks(
         project_name=AppConfig.PROJECT_NAME,
-        task_name=f"{AppConfig.MODEL_ID.split('/')[-1]}_{AppConfig.SETTING}",
+        task_name=f"{AppConfig.MODEL_ID.split('/')[-1]}_{AppConfig.DECODING_METHOD}_{AppConfig.LEARNING_RATE}",
         task_filter={
             "status": ["completed", "created", "queued"], # 살아있거나 성공한 태스크 타겟
             "type": ["training"]                         # 마스터 오토메이터 제외

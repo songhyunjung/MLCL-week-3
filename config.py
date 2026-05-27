@@ -7,7 +7,7 @@ class AppConfig:
     DEBUG_MODE = False  # True일 시 전체 데이터 중 10개만 추출하여 전체 파이프라인 결함 선제 검증
     
     # 2. MLOps 및 코드 형상 관리를 위한 중앙 원격 Git 제어 설정
-    PROJECT_NAME = "Week3_Qwen2"
+    PROJECT_NAME = "Week3_VLM"
     GIT_REPOSITORY = "https://github.com/songhyunjung/MLCL-week-3.git"
     GIT_BRANCH = "main"
     
@@ -20,7 +20,7 @@ class AppConfig:
     SETTING = "PEFT"          
 
     # Greedy, Beam (Beam=5) 중 선택     
-    DECODING_METHOD = "Beam"    #
+    DECODING_METHOD = "Greedy"    #
 
     # Flickr30k, CustomCOCO 등 확장 가능            
     DATASET_NAME = "nlphuji/flickr30k"    
@@ -35,3 +35,12 @@ class AppConfig:
     # 5. 평가지표 동적 활성화 풀
     BEAM_SIZE = 5
     ACTIVE_METRICS = ["BLEU", "CIDEr", "METEOR"]
+
+    # config.py 내부 AppConfig 클래스 맨 아래에 추가
+    @classmethod
+    def update_config(cls, model_id, lr, decoding_method):
+        cls.MODEL_ID = model_id
+        cls.LEARNING_RATE = float(lr)
+        cls.DECODING_METHOD = decoding_method
+        # (선택) 명시적으로 GPU ID를 동적 변경하고 싶다면 추가 가능
+        # cls.DEVICE = f"cuda:{cls.GPU_ID}"

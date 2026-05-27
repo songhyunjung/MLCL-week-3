@@ -8,6 +8,7 @@ from config import AppConfig
 from data_provider import UniversalDataProvider
 from model_loader import UniversalModelLoader
 from metrics import calculate_pipeline_metrics
+import argparse
 
 # =================================================================
 # ⚙️ 실전 학습을 위한 파이토치 Dataset 래퍼 클래스 정의
@@ -266,4 +267,28 @@ def main():
     print("==================================================")
 
 if __name__ == "__main__":
+    # 인자 생성기 등록
+    parser = argparse.ArgumentParser(description="VLM Hyperparameter Runner")
+    parser.add_argument("--model_id", type=str, default=AppConfig.MODEL_ID)
+    parser.add_argument("--lr", type=float, default=AppConfig.LEARNING_RATE)
+    parser.add_argument("--decoding", type=str, default=AppConfig.DECODING_METHOD)
+    parser.add_argument("--gpu_id", type=int, default=0)
+    args = parser.parse_args()
+
+    # 1. 전달받은 인자로 인프라 및 실험 셋업 동적 업데이트
+    AppConfig.GPU_ID = args.gpu_id
+    import torch # GPU_ID 세팅 후 디바이스 빌드를 위해 토치 재체크 유도 가능
+    AppConfig.DEVICE = f"cuda:{args.gpu_id}" if torch.cuda.is_available() else "cpu"
+    AppConfig.update_config(args.model_id, args.lr, args.decoding)
+
+    # 2. ClearML 태스크 이름도 고유하게 생성되도록 변경
+    clean_model_name = AppConfig.MODEL_ID.split('/')[-1]
+    task = Task.init(
+        project_name=AppConfig.PROJECT_NAME, 
+        task_name=f"[{clean_model_name}]_LR_{AppConfig.LEARNING_RATE}_DEC_{AppConfig.DECODING_METHOD}"
+    )
+    
+    # --- 이하 기존 main_vlm.py 본문 코드 유지 ---
+    print(f"🚀 활성화된 하드웨어 디바이스: {AppConfig.DEVICE}")
+    logger = task.get_logger()
     main()

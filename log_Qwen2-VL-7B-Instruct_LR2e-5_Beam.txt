@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "/NasData2/home/shj/projects/week3/main_vlm.py", line 10, in <module>
+    from metrics import calculate_pipeline_metrics
+  File "/NasData2/home/shj/projects/week3/metrics.py", line 2, in <module>
+    from pycocoevalcap.tokenizer.ptbtokenizer import PTBTokenizer
+ModuleNotFoundError: No module named 'pycocoevalcap'
